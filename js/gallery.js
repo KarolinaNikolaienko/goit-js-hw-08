@@ -86,7 +86,7 @@ images.forEach(({ preview, original, description }) => {
     // });
 
     imagesHTML += `<li class="gallery-item">
-  <a class="gallery-link" href="${original}">
+  <a class="gallery-link" href="${original}" onclick="return false">
     <img
       class="gallery-image"
       src="${preview}"
@@ -104,7 +104,8 @@ imagesList.insertAdjacentHTML("beforeend", imagesHTML);
 imagesList.addEventListener("click", showPicture);
 
 function showPicture(event) {
-    console.log(event.target.dataset.source);
-    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
-    instance.show();
+    if (event.target.dataset.source) {
+        const instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
+        instance.show();
+    }
 }
